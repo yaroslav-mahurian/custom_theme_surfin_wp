@@ -73,7 +73,7 @@ add_action('init', 'register_post_types');
 
 function register_post_types(){
 
-    $cptArgsArray = array(
+    $cptArgsArrayBoards = array(
         'labels'             => array(
             'name'               => 'Борды', // Основное название типа записи
             'singular_name'      => 'Борд', // отдельное название записи типа Book
@@ -109,15 +109,60 @@ function register_post_types(){
                                 )
     );
 
-	register_post_type('boards', $cptArgsArray );
+	register_post_type('boards', $cptArgsArrayBoards );
 
 }
 
 /* Добавление поддержки картинок превью для постов */
-add_theme_support( 'post-thumbnails' );
-
+    add_theme_support( 'post-thumbnails' );
 /* Указание размера картинки для добавления в запись */
 if (function_exists('add_image_size')) {
     add_image_size('board-slider', 225, 490, true);
+    add_image_size('intro-element-slider', 1016, 572, true);
 }
 
+
+
+/* Регистрация кастомного типа постов с элементами интро */
+add_action('init', 'register_post_types_intro');
+function register_post_types_intro(){
+
+    $cptArgsArrayIntro = array(
+        'labels'             => array(
+            'name'               => 'Элементы интро', // Основное название типа записи
+            'singular_name'      => 'Элемент интро', // отдельное название записи типа Book
+            'add_new'            => 'Добавить новый',
+            'add_new_item'       => 'Добавить новый элемент интро',
+            'edit_item'          => 'Редактировать элемент интро',
+            'new_item'           => 'Новый элемент интро',
+            'view_item'          => 'Посмотреть элемент интро',
+            'search_items'       => 'Найти элемент интро',
+            'not_found'          =>  'Элементов интро не найдено',
+            'not_found_in_trash' => 'В корзине не найдено ни одного элемента интро',
+            'parent_item_colon'  => '',
+            'menu_name'          => 'Элементы интро'
+
+            ),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => true,
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array(
+                                    'title',
+                                    //'editor',
+                                    //'author',
+                                    'thumbnail',
+                                    //'excerpt',
+                                    //'comments'
+                                )
+    );
+
+    register_post_type('intro-elements', $cptArgsArrayIntro );
+  
+}

@@ -4,7 +4,6 @@ get_header();
 
 ?>
 
-   
 <div class="slide-wrapper">
 
 
@@ -26,72 +25,25 @@ get_header();
 
 <div id="headerSlider" class="owl-carousel">
 
-    <div class="container slide-item">
-<div class="slide-item__desc">
-    <h2 class="slide-item__heading">
-        <span>Your</span>
-        Beautiful Escape
-        <div class="slide-item__text">
-            <p> One of the greatest things about the sport of surfing is that you need only three things: your body, 
-                a surfboard, and a wave.</p>
-        </div>
-    </h2>
-</div>
-<div class="slide-item__img slide-item__img--bg-1"></div>
-</div>
-    <div class="container slide-item">
-<div class="slide-item__desc">
-    <h2 class="slide-item__heading">
-        <span>Your</span>
-        Beautiful Escape
-        <div class="slide-item__text">
-            <p> One of the greatest things about the sport of surfing is that you need only three things: your body, 
-                a surfboard, and a wave.</p>
-        </div>
-    </h2>
-</div>
-<div class="slide-item__img slide-item__img--bg-1"></div>
-</div>
-    <div class="container slide-item">
-<div class="slide-item__desc">
-    <h2 class="slide-item__heading">
-        <span>Your</span>
-        Beautiful Escape
-        <div class="slide-item__text">
-            <p> One of the greatest things about the sport of surfing is that you need only three things: your body, 
-                a surfboard, and a wave.</p>
-        </div>
-    </h2>
-</div>
-<div class="slide-item__img slide-item__img--bg-1"></div>
-</div>
-    <div class="container slide-item">
-<div class="slide-item__desc">
-    <h2 class="slide-item__heading">
-        <span>Your</span>
-        Beautiful Escape
-        <div class="slide-item__text">
-            <p> One of the greatest things about the sport of surfing is that you need only three things: your body, 
-                a surfboard, and a wave.</p>
-        </div>
-    </h2>
-</div>
-<div class="slide-item__img slide-item__img--bg-1"></div>
-</div>
-    <div class="container slide-item">
-<div class="slide-item__desc">
-    <h2 class="slide-item__heading">
-        <span>Your</span>
-        Beautiful Escape
-        <div class="slide-item__text">
-            <p> One of the greatest things about the sport of surfing is that you need only three things: your body, 
-                a surfboard, and a wave.</p>
-        </div>
-    </h2>
-</div>
-<div class="slide-item__img slide-item__img--bg-1"></div>
-</div>
+    <!-- Вывод кастомного контента -->
+    <?php
 
+    global $post; /* Определение глобальной переменной post */
+    $args = array(  /* Определения массива с "настройками" функции get_posts в переменную args */
+        'post_type' => 'intro-elements',
+        'publish' => true,
+    );
+
+    get_posts($args); /* Вызов функции get_posts (она возвращает массив с постами) */
+
+    $intro_elements_slider = get_posts( $args ); /* То, что она возвращает необходимо записать в переменную */
+
+    foreach( $intro_elements_slider as $post) { /* Обходим этот массив через цикл (в нем создаются переменные с названием поста, описанием, контентом, метаполями и тд)*/
+    include( get_template_directory() . '/content-intro-slider.php'); /* Подключаем файл content-board-slider.php ( делается для удобочитаемости кода ), здесь не указывается get_template_directory_uri(), так как мы подключаем php файл в php файл, он не должен отображаться в браузере, например как файл стилей, в данном случае указывается конкретный физический путь на сервере в текущей папке */
+    }
+    wp_reset_postdata(); /* В конце выполнения необходимо делать сброс, так как дальше также может быть запрос постов и они случайно не вывелись */
+
+    ?>
 </div>
 
 <div class="container relative">
@@ -119,6 +71,7 @@ get_header();
 
 
 </div>
+
 <section class="quote">
 <div class="quote-wrapper">
     <div class="quote__text">
@@ -189,7 +142,7 @@ get_header();
                 $slider_boards = get_posts( $args ); /* То, что она возвращает необходимо записать в переменную */
 
                 foreach( $slider_boards as $post) { /* Обходим этот массив через цикл (в нем создаются переменные с названием поста, описанием, контентом, метаполями и тд)*/
-                include( get_template_directory() . '/content-board-slider.php'); /* Подключаем файл content-board-slider.php ( делается для удобочитаемости кода ), здесь не указывается get_template_directory_uri(), так как мы подключаем php файл в php файл, он не должен отображаться в бразуере, например как файл стилей, в данном случае указывается конкретный физический путь на сервере в текущей папке */
+                include( get_template_directory() . '/content-board-slider.php'); /* Подключаем файл content-board-slider.php ( делается для удобочитаемости кода ), здесь не указывается get_template_directory_uri(), так как мы подключаем php файл в php файл, он не должен отображаться в браузере, например как файл стилей, в данном случае указывается конкретный физический путь на сервере в текущей папке */
                 }
                 wp_reset_postdata(); /* В конце выполнения необходимо делать сброс, так как дальше также может быть запрос постов и они случайно не вывелись */
 

@@ -14,7 +14,6 @@
 <body <?php body_class(); ?>>
 
 <nav class="container navigation-wrapper relative">   
-        
         <div class="nav-logo-wrapper">
             <a class="logo" href="#">
                 <img width="16" src="<?php echo get_template_directory_uri()?>/img/logo/logo.svg" alt="">
